@@ -3,7 +3,8 @@
 This repository consists of the many pages that I created in order to introduce
 Flutter to my students at Coding Minds Academy. The goal was for them to
 understand that Flutter is a platform that they could use to start building their
-applications on.
+applications on. They were also taught on how they could integrate Firebase with
+Flutter for realtime database and authentication service.
 
 The students were taught on:
 - Basics of Dart
@@ -14,6 +15,8 @@ The students were taught on:
 - Top down approach to design pages
 - ListView, ListTile and Data basics
 - State
+- Firebase Integration
+- Firebase Authentication for Login Page
 
 ## Getting Started
 

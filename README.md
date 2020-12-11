@@ -1,6 +1,19 @@
-# login_page_demo
+# flutter_introduction_demo
 
-A new Flutter application.
+This repository consists of the many pages that I created in order to introduce
+Flutter to my students at Coding Minds Academy. The goal was for them to
+understand that Flutter is a platform that they could use to start building their
+applications on.
+
+The students were taught on:
+- Basics of Dart
+- UI Layouts (Columns, Rows)
+- Basic Widgets
+- Page Creation
+- Navigation between pages
+- Top down approach to design pages
+- ListView, ListTile and Data basics
+- State
 
 ## Getting Started
 

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "196511681913",
+    "project_id": "flutter-fall2020",
+    "storage_bucket": "flutter-fall2020.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196511681913:android:b4392d6da8b1cff1e773a8",
+        "android_client_info": {
+          "package_name": "cma.jthamrun.login_page_demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "196511681913-50q2j2arenmlg8ict5n3pif5qin6qbmu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBs7NihcH3SucYhzSCy2eW1tcTs8QgwgVM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "196511681913-50q2j2arenmlg8ict5n3pif5qin6qbmu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

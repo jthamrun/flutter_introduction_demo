@@ -17,6 +17,7 @@ The students were taught on:
 - State
 - Firebase Integration
 - Firebase Authentication for Login Page
+- Realtime Database Integration (Write, Read, Update)
 
 ## Getting Started
 

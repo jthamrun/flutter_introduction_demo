@@ -47,6 +47,7 @@ class _ListViewFirebaseDemoPageState extends State<ListViewFirebaseDemoPage> {
       datasnapshot.value.forEach((k, v) {
         print(k);
         print(v);
+        v['image'] = 'https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png';
         friendTmpList.add(v);
       });
       print("Final Friend List: ");

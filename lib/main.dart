@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:login_page_demo/signup_page.dart';
 
+import 'list_view_firebase_demo.dart';
 import 'login_page.dart';
 
 void main() {
@@ -28,7 +31,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Messaging App'),
     );
   }
 }
@@ -52,18 +55,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -79,45 +73,144 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Click the add button to go to the Login Page!',
-            ),
-            // Text(
-            //   '$_counter',
-            //   style: Theme.of(context).textTheme.headline4,
-            // ),
-          ],
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
+          child: Column(
+              children: [
+                Expanded(
+                  flex: 30,
+                  child: Image(
+                    image: NetworkImage('https://www.wraltechwire.com/wp-content/uploads/2017/11/NewsletterSignup-Background.jpg'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Expanded(
+                  flex: 70,
+                  child: Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 20, bottom: 20),
+                          child: Text(
+                              'Login',
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold
+                              )
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 35, right: 35, bottom: 10, top: 10),
+                          child: TextField(
+                            controller: emailController,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Email',
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 35, right: 35, top: 10, bottom: 10),
+                          child: TextField(
+                            controller: passwordController,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Password',
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(top: 10, bottom: 20),
+                          child: Text(
+                              'Forgot Password?',
+                              style: TextStyle(
+                                  color: Colors.red
+                              )
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(bottom: 5),
+                          height: 40,
+                          width: 200,
+                          child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                                side: BorderSide(
+                                    color: Colors.red
+                                )
+                            ),
+                            child: Text("Login"),
+                            onPressed: () {
+                              FirebaseAuth.instance.signInWithEmailAndPassword(
+                                  email: emailController.text, password: passwordController.text)
+                                  .then((value) {
+                                print("Login successfully!");
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => ListViewFirebaseDemoPage()),
+                                );
+                              }).catchError((error) {
+                                print("Failed to login!");
+                                print(error.toString());
+                              });
+                            },
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(top: 5),
+                          height: 40,
+                          width: 200,
+                          child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                                side: BorderSide(
+                                    color: Colors.red
+                                )
+                            ),
+                            child: Text("Sign Up"),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => SignupPage()),
+                              );
+                            },
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(top: 30),
+                          child: Row (
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                  margin: EdgeInsets.only(right: 20),
+                                  child: Text(
+                                      'App Logo'
+                                  )
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.book),
+                                onPressed: () {
+
+                                },
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.computer),
+                                onPressed: () {
+
+                                },
+                              )
+                            ],
+                          ),
+                        ),
+                      ]
+                  ),
+                ),
+              ]
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => LoginPage()),
-          );
-        },
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

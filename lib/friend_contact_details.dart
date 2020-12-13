@@ -16,10 +16,10 @@ class _FriendContactDetailsPageState extends State<FriendContactDetailsPage> {
     return Scaffold(
       body: Column(
         children: [
-          Text("${widget.contactDetails.name}"),
-          Text("${widget.contactDetails.phone}"),
-          Text("${widget.contactDetails.type}"),
-          Text("${widget.contactDetails.imageUrl}")
+          Text("${widget.contactDetails['name']}"),
+          Text("${widget.contactDetails['phone']}"),
+          Text("${widget.contactDetails['type']}"),
+          Text("${widget.contactDetails['image']}")
         ],
       )
     );

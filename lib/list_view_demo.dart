@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_page_demo/add_friend.dart';
 import 'package:login_page_demo/friend_contact_details.dart';
 import 'dart:math';
 
@@ -79,17 +80,22 @@ class _ListViewDemoPageState extends State<ListViewDemoPage> {
         }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          var rng = Random();
-          Friend f5 = Friend(
-            entries[rng.nextInt(entries.length)],
-            phones[rng.nextInt(phones.length)],
-            "https://www.shareicon.net/data/512x512/2016/09/15/829444_man_512x512.png",
-            "HOME"
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddFriendPage()),
           );
-          friends.add(f5);
 
-          setState(() {
-          });
+          // var rng = Random();
+          // Friend f5 = Friend(
+          //   entries[rng.nextInt(entries.length)],
+          //   phones[rng.nextInt(phones.length)],
+          //   "https://www.shareicon.net/data/512x512/2016/09/15/829444_man_512x512.png",
+          //   "HOME"
+          // );
+          // friends.add(f5);
+          //
+          // setState(() {
+          // });
         },
         child: Icon(Icons.add),
       ),

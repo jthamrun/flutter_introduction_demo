@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:login_page_demo/list_view_firebase_demo.dart';
 import 'package:login_page_demo/signup_page.dart';
 import 'package:login_page_demo/user_profile.dart';
 
@@ -90,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                               print("Login successfully!");
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => UserProfilePage()),
+                                MaterialPageRoute(builder: (context) => ListViewFirebaseDemoPage()),
                               );
                         }).catchError((error) {
                               print("Failed to login!");

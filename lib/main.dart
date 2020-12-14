@@ -146,11 +146,11 @@ class _MyHomePageState extends State<MyHomePage> {
                               FirebaseAuth.instance.signInWithEmailAndPassword(
                                   email: emailController.text, password: passwordController.text)
                                   .then((value) {
-                                print("Login successfully!");
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => ListViewFirebaseDemoPage()),
-                                );
+                                    print("Login successfully!");
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => ListViewFirebaseDemoPage()),
+                                    );
                               }).catchError((error) {
                                 print("Failed to login!");
                                 print(error.toString());

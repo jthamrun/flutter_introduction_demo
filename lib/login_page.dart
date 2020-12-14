@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login_page_demo/list_view_firebase_demo.dart';
 import 'package:login_page_demo/signup_page.dart';
-import 'package:login_page_demo/user_profile.dart';
+import 'package:login_page_demo/user_profile_old.dart';
 
 class LoginPage extends StatefulWidget {
   @override

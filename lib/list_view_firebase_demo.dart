@@ -1,10 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:login_page_demo/add_friend.dart';
 import 'package:login_page_demo/friend_contact_details.dart';
+import 'package:login_page_demo/current_user_profile.dart';
+import 'package:login_page_demo/user_profile_page.dart';
 import 'dart:math';
 
 
+import 'chat_page.dart';
 import 'friend_data.dart';
 
 class ListViewFirebaseDemoPage extends StatefulWidget {
@@ -47,14 +51,26 @@ class _ListViewFirebaseDemoPageState extends State<ListViewFirebaseDemoPage> {
       datasnapshot.value.forEach((k, v) {
         print(k);
         print(v);
-        v['image'] = 'https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png';
+        if (v['image'] == null) {
+          v['image'] = 'https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png';
+        }
         friendTmpList.add(v);
       });
       print("Final Friend List: ");
       print(friendTmpList);
       friendList = friendTmpList;
       setState(() {
-
+        FirebaseAuth.instance.currentUser().then((value) {
+          print(value);
+          var uid = value.uid;
+          print("uid: " + uid);
+          var userInfo = datasnapshot.value[uid];
+          CurrentUserProfile.currentUser = userInfo;
+          print("Current user info: " + userInfo.toString());
+        }).catchError((error) {
+          print("Failed to get the user info");
+          print(error);
+        });
       });
     }).catchError((error) {
       print("Failed to load data!");
@@ -65,6 +81,21 @@ class _ListViewFirebaseDemoPageState extends State<ListViewFirebaseDemoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Friends List'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.edit),
+            onPressed: () {
+              print("clicked");
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => UserProfilePage()),
+              );
+            },
+          )
+        ]
+      ),
       body: ListView.builder(
         itemCount: friendList.length,
         itemBuilder: (BuildContext context, int index) {
@@ -73,7 +104,7 @@ class _ListViewFirebaseDemoPageState extends State<ListViewFirebaseDemoPage> {
               print("The item is clicked " + index.toString());
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FriendContactDetailsPage(friendList[index])),
+                MaterialPageRoute(builder: (context) => ChatPage(friendList[index]['uid'])),
               );
             },
             title: Container(
@@ -113,13 +144,13 @@ class _ListViewFirebaseDemoPageState extends State<ListViewFirebaseDemoPage> {
         }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          refreshFriendList();
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => AddFriendPage()),
-          // );
+          //refreshFriendList();
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ChatPage('group')),
+          );
         },
-        child: Icon(Icons.refresh),
+        child: Icon(Icons.message),
       ),
       );
   }

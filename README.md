@@ -18,6 +18,9 @@ The students were taught on:
 - Firebase Integration
 - Firebase Authentication for Login Page
 - Realtime Database Integration (Write, Read, Update)
+- Firebase Storage Integration
+- Creation of a Basic Messaging App (Private and Group Chats)
+- Picture Taking in Application using Flutter
 
 ## Getting Started
 
